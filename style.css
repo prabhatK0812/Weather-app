@@ -19,7 +19,7 @@
    Body Styles
    ================================ */
 body{
-  background: url('assets/BG.jpg') no-repeat center center/cover; /* Full screen background image */
+  background: url('assets/bg.jpg') no-repeat center center/cover; /* Full screen background image */
   width: 100%;                        /* Full width */
   height: 100vh;                      /* Full viewport height */
   display: flex;                      /* Flex for centering */
@@ -216,3 +216,4 @@ body::before{
   height: 180px; 
   width: auto;                        /* Maintain aspect ratio */
 }
+
