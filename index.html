@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts: Outfit & Poppins -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap">
+
+  <!-- Google Material Symbols (for icons like location, wind, humidity) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+  <!-- Main container for the whole weather card/app -->
+  <main class="main-container">
+
+    <!-- ======================
+         Search / Input Section
+         ====================== -->
+    <header class="input-container">
+      <!-- Input field to type city name -->
+      <input type="text" class="city-input" placeholder="Search City">
+
+      <!-- Search button with icon -->
+      <button class="search-btn">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+    </header>
+
+    <!-- ======================
+         Loading Spinner
+         ======================
+         This div shows a spinner when the app is fetching data from API
+         Hidden by default, JS will toggle display: block/none
+    -->
+    <div class="loading" style="display:none;"></div>
+
+    <!-- ======================
+         Weather Info Card
+         ======================
+         Hidden initially, shown after city is searched
+    -->
+    <section class="weather-info" style="display: none;">
+
+      <!-- ===== Location & Date ===== -->
+      <div class="location-date-container">
+        <div class="location">
+          <!-- Location icon -->
+          <span class="material-symbols-outlined">location_on</span>
+          <!-- City Name -->
+          <h4 class="country-txt">City</h4>
+        </div>
+        <!-- Current Date -->
+        <h5 class="current-date-txt regular-txt">Date</h5>
+      </div>
+
+      <!-- ===== Main Weather Summary ===== -->
+      <div class="weather-summary-container">
+        <!-- Weather Icon (Clouds, Rain, etc.) -->
+        <img src="assets/weather/clouds.svg" class="weather-summary-img">
+        <div class="weather-summary-info">
+          <!-- Current Temperature -->
+          <h1 class="temp-txt">22°C</h1>
+          <!-- Weather condition text -->
+          <h3 class="condition-txt regular-txt">Clouds</h3>
+        </div>
+      </div>
+
+      <!-- ===== Additional Weather Conditions ===== -->
+      <div class="weather-conditions-container">
+        <!-- Humidity -->
+        <div class="condition-item">
+          <span class="material-symbols-outlined">water_drop</span>
+          <div class="condition-info">
+            <h5 class="regular-text">Humidity</h5>
+            <h5 class="humidity-value-txt">55%</h5>
+          </div>
+        </div>
+
+        <!-- Wind Speed -->
+        <div class="condition-item">
+          <span class="material-symbols-outlined">air</span>
+          <div class="condition-info">
+            <h5 class="regular-text">Wind Speed</h5>
+            <h5 class="wind-value-txt">2 M/s</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Forecast / Next Days ===== -->
+      <div class="forecast-items-container">
+        <!-- JS will dynamically insert forecast cards here -->
+      </div>
+    </section>
+
+    <!-- ======================
+         Search City Placeholder
+         ======================
+         Shown before any city is searched
+    -->
+    <section class="search-city section-message">
+      <img src="assets/message/search-city.png">
+      <div>
+        <h1>Search City</h1>
+        <h4 class="regular-txt">Find out the weather conditions of the city</h4>
+      </div>
+    </section>
+
+    <!-- ======================
+         Not Found Message
+         ======================
+         Shown when user searches a city that does not exist
+    -->
+    <section class="not-found section-message" style="display: none;">
+      <img src="assets/message/not-found.png" class="message-img">
+      <div>
+        <h1>City Not Found</h1>
+        <h4 class="regular-txt">Please check the city name and try again.</h4>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================
+       JavaScript file
+       ======================
+       Contains all logic for fetching weather, toggling Celsius/Fahrenheit,
+       updating forecast, handling loading spinner, etc.
+  -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>
+
+
+
+
+

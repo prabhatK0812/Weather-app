@@ -1,0 +1,218 @@
+/* ================================
+   Google Fonts (already imported in HTML)
+   ================================ */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap');
+
+/* ================================
+   Global Styles
+   ================================ */
+*{
+  margin: 0;                       /* Remove default margin */
+  padding: 0;                      /* Remove default padding */
+  font-family: 'Poppins', sans-serif; /* Default font */
+  box-sizing: border-box;          /* Include padding/border in element width */
+  color: white;                    /* Default text color */
+  font-weight: 600;                /* Default font weight */
+}
+
+/* ================================
+   Body Styles
+   ================================ */
+body{
+  background: url('assets/BG.jpg') no-repeat center center/cover; /* Full screen background image */
+  width: 100%;                        /* Full width */
+  height: 100vh;                      /* Full viewport height */
+  display: flex;                      /* Flex for centering */
+  align-items: center;                /* Vertically center */
+  justify-content: center;            /* Horizontally center */
+  position: relative;                 /* Required for absolute children */
+}
+
+/* Semi-transparent overlay + blur effect */
+body::before{
+  content: "";                       /* Empty content for pseudo-element */
+  position: absolute;                /* Position over entire body */
+  width: 100%;                       
+  height: 100%;
+  background: rgba(0,0,0,0.15);      /* Black overlay with 15% opacity */
+  backdrop-filter: blur(15px);       /* Blur background */
+  z-index: 0;                         /* Behind main container */
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+.regular-txt{ font-weight: 400; }    /* Lighter text for secondary elements */
+
+/* ================================
+   Main Container (Card)
+   ================================ */
+.main-container{
+  position: relative;                 /* Relative positioning for children */
+  z-index: 1;                         /* Above body overlay */
+  border: 1px solid rgba(255,255,255,0.2); /* Thin semi-transparent border */
+  width: 300px;                        /* Card width */
+  height: 496px;                       /* Card height */
+  background: linear-gradient(to top, rgba(0,0,0,0.15), rgba(255,255,255,0.15)); /* Frosted glass effect */
+  border-radius: 12px;                 /* Rounded corners */
+  backdrop-filter: blur(20px);         /* Glass blur effect */
+  padding: 20px;                       /* Inner spacing */
+  display: flex;                       /* Flex layout */
+  flex-direction: column;              /* Stack children vertically */
+  transition: background 0.5s ease;    /* Smooth background change */
+}
+
+/* ================================
+   Input Container (City Search)
+   ================================ */
+.input-container{
+  position: relative;                 /* Relative to position search button inside */
+  margin-bottom: 25px;                /* Space below input */
+}
+
+/* City Input Box */
+.city-input{
+  width: 100%;                        /* Full width */
+  padding: 10px 16px;                 /* Top/Bottom and Left/Right padding */
+  padding-right: 45px;                /* Extra space for search button */
+  border-radius: 99px;                /* Pill shape */
+  border: 3px solid transparent;      /* Default border transparent */
+  background: rgba(0,0,0,0.15);       /* Semi-transparent background */
+  outline: none;                       /* Remove default focus outline */
+  font-weight: 500;                    /* Medium font weight */
+  transition: 0.25s border;            /* Smooth border on focus */
+}
+
+/* Input Focus */
+.city-input:focus{ border: 3px solid rgba(255,255,255,0.4); }
+
+/* Placeholder text style */
+.city-input::placeholder{ color: rgba(255,255,255,0.75); }
+
+/* Search Button */
+.search-btn{
+  position: absolute;                 /* Positioned inside input container */
+  right: 16px;                        /* Right spacing */
+  top: 50%;                            /* Vertical center */
+  transform: translateY(-50%);         /* Correct vertical alignment */
+  background: none;                    /* No default button styling */
+  border: none;                        /* Remove border */
+  cursor: pointer;                     /* Pointer on hover */
+  display: flex;                        /* Flex for icon alignment */
+}
+
+/* ================================
+   Loading Spinner
+   ================================ */
+.loading{
+  position: absolute;                 /* Center over card */
+  top: 50%;                           
+  left: 50%;                          
+  transform: translate(-50%, -50%);   /* Perfect center */
+  z-index: 2;                          /* Above all content */
+  width: 60px;                         /* Spinner size */
+  height: 60px;
+  border: 6px solid rgba(255,255,255,0.2); /* Light border */
+  border-top-color: white;             /* Top white for spinning effect */
+  border-radius: 50%;                  /* Circular */
+  animation: spin 1s linear infinite;  /* Continuous spin */
+}
+
+/* Spinner Animation */
+@keyframes spin{
+  0% { transform: translate(-50%, -50%) rotate(0deg);}
+  100% { transform: translate(-50%, -50%) rotate(360deg);}
+}
+
+/* ================================
+   Weather Info Section
+   ================================ */
+.weather-info{ 
+  display: flex; 
+  flex-direction: column; 
+  gap: 25px;                        /* Spacing between sections */
+  opacity: 0;                        /* Hidden initially */
+  transition: opacity 0.5s ease;    /* Smooth fade-in */
+}
+.weather-info.show{ opacity: 1; }   /* Show when JS adds .show class */
+
+/* Location & Date */
+.location-date-container{ 
+  display: flex; 
+  justify-content: space-between;  /* Space between city & date */
+  align-items: center;              /* Vertically center */
+}
+.location{ 
+  display: flex; 
+  align-items: center; 
+  gap: 6px;                         /* Space between icon and city name */
+}
+
+/* Weather Summary */
+.weather-summary-container{ 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+.weather-summary-img{ 
+  width: 120px; 
+  height: 120px; 
+}
+.weather-summary-info{ 
+  text-align: end;                  /* Align text to right */
+}
+
+/* Additional Conditions */
+.weather-conditions-container{ 
+  display: flex; 
+  justify-content: space-between; 
+}
+.condition-item{ 
+  display: flex; 
+  align-items: center; 
+  gap: 6px; 
+}
+.condition-item span{ 
+  font-size: 30px;                  /* Icon size */
+}
+
+/* ================================
+   Forecast Cards
+   ================================ */
+.forecast-items-container{
+  display: flex; 
+  gap: 15px;                        /* Space between forecast items */
+  overflow-x: auto;                  /* Horizontal scroll */
+  padding-bottom: 12px;              /* Extra padding below cards */
+  scroll-behavior: smooth;           /* Smooth scrolling */
+}
+
+.forecast-item{
+  min-width: 70px;                   /* Minimum width */
+  background: rgba(255,255,255,0.1); /* Semi-transparent card */
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px;                          /* Space inside card */
+  padding: 10px; 
+  align-items: center; 
+  border-radius: 12px;               /* Rounded corners */
+  transition: 0.3s background;       /* Smooth hover effect */
+}
+.forecast-item:hover{ background: rgba(255,255,255,0.15); } /* Slight highlight on hover */
+.forecast-item-img{ width: 35px; height: 35px; }
+
+/* ================================
+   Section Messages (Search / Not Found)
+   ================================ */
+.section-message{
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  gap: 15px; 
+  margin-top: 25%;                   /* Push down for vertical center */
+}
+.section-message img{ 
+  height: 180px; 
+  width: auto;                        /* Maintain aspect ratio */
+}
