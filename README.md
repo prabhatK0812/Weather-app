@@ -1,2 +1,2 @@
 # Weather-app :
-Weather Application | HTML CSS and JavaScript | OpenWeather
+Weather Application | HTML CSS and JavaScript | OpenWeather API
